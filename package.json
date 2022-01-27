@@ -1,0 +1,27 @@
+{
+  "name": "electron-notifications",
+  "version": "1.0.0",
+  "description": "Notifications",
+  "main": "index.js",
+  "scripts": {
+    "run": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jweir136/Electron-Notifications.git"
+  },
+  "keywords": [
+    "Electron"
+  ],
+  "author": "Jacob Weir",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jweir136/Electron-Notifications/issues"
+  },
+  "homepage": "https://github.com/jweir136/Electron-Notifications#readme",
+  "devDependencies": {
+    "electron": "^16.0.7",
+    "electron-packager": "^15.4.0"
+  }
+}
