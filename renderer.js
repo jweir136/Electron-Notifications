@@ -41,8 +41,9 @@ async function loadAndPredict()
     const net = await bodyPix.load({
         architecture: 'MobileNetV1',
         outputStride: 16,
-        multiplier: 0.5,
-        quantBytes: 1
+        multiplier: 0.75,
+        quantBytes: 2,
+        internalResolution: 'low'
     });
     const segmentation = await net.segmentPerson(canvas);
 
