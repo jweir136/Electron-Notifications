@@ -23,5 +23,8 @@
   "devDependencies": {
     "electron": "^16.0.7",
     "electron-packager": "^15.4.0"
+  },
+  "dependencies": {
+    "@tensorflow-models/body-pix": "^2.2.0"
   }
 }
