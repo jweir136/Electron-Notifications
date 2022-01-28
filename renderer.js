@@ -1,25 +1,27 @@
 const canvas = document.querySelector("canvas");
 const context = canvas.getContext("2d");
-let img = new Image();
 
-function setCanvasDimensions() {
-    canvas.width = 300;
-    canvas.height = 300;
+const video = document.querySelector("video");
+const constraints = {
+    video: true,
+};
+
+const FPS = 10; // change this to set the video frame refresh rate.
+
+setInterval(draw, FPS);
+
+function draw()
+{
+    context.drawImage(video, 0, 0);
+    //context.clearRect(0, 0, canvas.width, canvas.height);
+
 }
 
-function drawRectangle(height, width) {
-    context.beginPath();
-    context.rect(0, 0, height, width);
-    context.stroke();
+function getWebcamAccess()
+{
+    navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+        video.srcObject = stream;
+    });
 }
 
-function drawImg() {
-        img.onload = function(e) {
-            context.drawImage(img, 10, 10);
-        }
-        img.src = "pic.jpg"    
-}
-
-setCanvasDimensions();
-//drawRectangle(150, 150);
-drawImg();
+getWebcamAccess();
