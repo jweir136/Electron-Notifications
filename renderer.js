@@ -1,51 +1,56 @@
-const canvas = document.querySelector("canvas");
-const context = canvas.getContext("2d");
-
-const video = document.querySelector("video");
-const constraints = {
-    video: true,
+const state = {
+    canvas: document.querySelector('canvas'),
+    context: document.querySelector('canvas').getContext('2d'),
+    video: document.querySelector('video'),
+    constraints: {
+        video: true,
+    },
+    FPS: 160,
+    net: null
 };
 
-const FPS = 120; // change this to set the video frame refresh rate.
-
-setInterval(function() {
-    draw(),
-    loadAndPredict()
-}, FPS);
-
-function draw()
+async function loadModel()
 {
-    context.drawImage(video, 0, 0);
-    //context.clearRect(0, 0, canvas.width, canvas.height);
-
-}
-
-function getWebcamAccess()
-{
-    navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
-        video.srcObject = stream;
-    });
-}
-
-function drawBodyPart(x, y)
-{
-    context.fillStyle = "red";
-
-    context.beginPath();
-    context.rect(x, y, 5, 5);
-    context.fill();
-}
-
-async function loadAndPredict()
-{
-    const net = await bodyPix.load({
+    state.net = await bodyPix.load({
         architecture: 'MobileNetV1',
         outputStride: 16,
         multiplier: 0.75,
         quantBytes: 2,
         internalResolution: 'low'
     });
-    const segmentation = await net.segmentPerson(canvas);
+}
+
+setInterval(function() {
+    loadAndPredict();
+    draw();
+}, state.FPS);
+
+function draw()
+{
+    state.context.drawImage(state.video, 0, 0);
+    //context.clearRect(0, 0, canvas.width, canvas.height);
+
+}
+
+function getWebcamAccess()
+{
+    navigator.mediaDevices.getUserMedia(state.constraints).then((stream) => {
+        state.video.srcObject = stream;
+    });
+}
+
+function drawBodyPart(x, y)
+{
+    state.context.fillStyle = "red";
+
+    state.context.beginPath();
+    state.context.rect(x, y, 5, 5);
+    state.context.fill();
+}
+
+async function loadAndPredict()
+{
+    const segmentation = await state.net.segmentPerson(state.canvas);
 
     for (let i = 0; i < segmentation.allPoses.length; i+=1)
     {
@@ -64,4 +69,5 @@ async function loadAndPredict()
     }
 }
 
+loadModel();
 getWebcamAccess();
