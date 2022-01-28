@@ -1,5 +1,8 @@
-const NOTIFICATION_TITLE = 'Title'
-const NOTIFICATION_BODY = 'Notification from the Renderer process. Click to log to console.'
-const CLICK_MESSAGE = 'Notification clicked!'
-
-new Notification(NOTIFICATION_TITLE, { body: NOTIFICATION_BODY }).onclick = () => console.log("HI");
+/**
+ * Is used to determine if the user's electron browser has WebRTC enabled.
+ * @returns `true` if WebRTC can be used, `false` otherwise.
+ */
+function hasGetUserMedia()
+{
+    return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+}
