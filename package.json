@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/jweir136/Electron-Notifications#readme",
   "devDependencies": {
-    "electron": "^16.0.7",
+    "electron": "^16.0.8",
     "electron-packager": "^15.4.0"
   }
 }
