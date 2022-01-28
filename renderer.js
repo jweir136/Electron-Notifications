@@ -42,7 +42,7 @@ async function loadAndPredict()
         architecture: 'MobileNetV1',
         outputStride: 16,
         multiplier: 0.5,
-        quantBytes: 2
+        quantBytes: 1
     });
     const segmentation = await net.segmentPerson(canvas);
 
