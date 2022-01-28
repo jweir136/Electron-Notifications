@@ -7,7 +7,6 @@ function setCanvasDimensions() {
 }
 
 function drawRectangle(height, width) {
-    alert("1");
     context.beginPath();
     context.rect(0, 0, height, width);
     context.stroke();
