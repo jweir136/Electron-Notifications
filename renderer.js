@@ -1,22 +1,17 @@
-/**
- * Is used to determine if the user's electron browser has WebRTC enabled.
- * @returns `true` if WebRTC can be used, `false` otherwise.
- */
-function hasGetUserMedia()
-{
-    return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+const canvas = document.querySelector("canvas");
+const context = canvas.getContext("2d");
+
+function setCanvasDimensions() {
+    canvas.width = 300;
+    canvas.height = 300;
 }
 
-function getWebcamAccess()
-{
-    const constraints = {
-        video: true,
-    };
-      
-    const video = document.querySelector("video");
-    navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
-        video.srcObject = stream;
-    });
+function drawRectangle(height, width) {
+    alert("1");
+    context.beginPath();
+    context.rect(0, 0, height, width);
+    context.stroke();
 }
 
-getWebcamAccess();
+setCanvasDimensions();
+drawRectangle(150, 150);
