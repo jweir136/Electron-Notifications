@@ -16,7 +16,7 @@ async function loadModel()
         outputStride: 16,
         multiplier: 0.75,
         quantBytes: 2,
-        internalResolution: 'low'
+        internalResolution: 'medium'
     });
 }
 
@@ -61,7 +61,7 @@ async function loadAndPredict()
             let y = segmentation.allPoses[i].keypoints[j].position.y;
             let score = segmentation.allPoses[i].keypoints[j].score;
             
-            if (score >= 0.75)
+            if (score >= 0.80)
             {
                 drawBodyPart(x, y);
             }
